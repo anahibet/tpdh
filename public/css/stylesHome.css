@@ -1,0 +1,25 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: Roboto;
+ 
+
+}
+
+header{
+  display: flex !important;
+}
+
+
+
+body {
+  background-image: url(/img/home.jpg);
+  background-size: 95%;
+}
+
+
+
+
+
+

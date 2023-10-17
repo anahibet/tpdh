@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/editarProducto.css" />
+
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+            <main>
+                <section class="w3-margin-bottom">
+                    <form action="/users/edit/<%= userToEdit.user_id %>?_method=PATCH" method="POST">
+                        <strong>
+            <p class="w3-center">Editar <%= userToEdit.user_firstname %>
+            </p>
+          </strong>
+
+                        <label for="firstName" class="form-label">Nombre:</label>
+                        <input value="<%= userToEdit.user_firstname %>" name="firstName" id="name" class="form-input">
+
+                        <label for="lastName" class="form-label">Contraseñia:</label>
+                        <input value="<%= userToEdit.user_password %>" name="password" id="password" class="form-input">
+
+
+                        <input class="w3-btn w3-round-xlarge w3-green w3-hover-black" type="submit" value="Editar usuario">
+
+
+                    </form>
+                </section>
+            </main>
+
+          
+    </body>
+
+</html>

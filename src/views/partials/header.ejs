@@ -1,0 +1,38 @@
+<header class="header">
+    <nav class="nav">
+        <input type="checkbox" id="check" />
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+
+        <% if(locals.isLogged){ %>
+
+            <ul class="nav-menu">
+                <li>
+                    <a class="nav-menu-link nav-link">Usuario: <%= locals.userLogged.user_firstname + " "%></a>
+                    <!-- <img src="/public/img/userdefault.png" width="40" style="border-radius: 100%"> -->
+                </li>
+               
+               
+                
+                <li>
+                    <a href="/users/logout" class="nav-menu-link nav-link">SALIR</a>
+                </li>
+                
+            </ul>
+            <% } else{ %>
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-menu-link nav-link">Home</a></li>
+                    <li>
+                        <a href="/users/login" class="nav-menu-link nav-link">Ingresá <i
+                                class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                 
+                </ul>
+                <% } %>
+
+                    <section class="common-header-center">
+                    </section>
+    </nav>
+
+</header>

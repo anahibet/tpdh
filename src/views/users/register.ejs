@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+    <link type="text/css" href="/css/forms.css" rel="stylesheet" />
+
+    <body class="body-form">
+        <%- include('../partials/header.ejs') %>
+            <main>
+                <form action="register" class="login-form" enctype="multipart/form-data" method="POST">
+                    <section class="form-register">
+                        <h4 class="h4-form">Registrate</h4>
+                        
+                        <input class="control firstName" type="text" name="firstName" placeholder="Nombre" value="<%= locals.oldData ? oldData.user_firstName : null %>" />
+                        <% if(locals.errors && errors.firstName) { %>
+                            <p class="error-msg">
+                                <%= errors.firstName.msg %>
+                            </p>
+                            <% } %>
+                                <input class="control lastName" type="text" name="lastName" placeholder="Apellido" value="<%=locals.oldData ? oldData.user_lastname :null%>" />
+                                <% if(locals.errors && errors.lastName) { %>
+                                    <p class="error-msg">
+                                        <%= errors.lastName.msg %>
+                                    </p>
+                                    <% } %>
+                                        <input class="control email" type="email" name="email" placeholder="E-mail" value="<%= locals.oldData ? oldData.user_email :null%> " />
+                                        <% if(locals.errors && errors.email) { %>
+                                            <p class="error-msg" >
+                                                <%= errors.email.msg %>
+                                            </p>
+                                            <% } %>
+                                            <label for="category">Categoría</label>
+                                            <select class="control userCategory" name="userCategory" id="userCategory">
+                                                <option value="1">Categoría 1</option>
+                                                <option value="2">Categoría 2</option>
+                                          
+                                            </select>
+                                                <label for="images">Imágen de Perfil</label>
+                                                <input class="control" type="file" name="images" id="images" placeholder="Imagen de Perfil" />
+                                                <input class="control password" type="password" name="password" placeholder="Contraseña" value="<%= locals.oldData ? oldData.user_password : null %>" />
+                                                <% if(locals.errors && errors.password) { %>
+                                                    <p class="error-msg">
+                                                        <%= errors.password.msg %>
+                                                    </p>
+                                                    <% } %>
+                                                <ul class="errors"></ul>    
+                                                <button class="button" type="submit" name="" value="Crear cuenta"> Crear cuenta </button>
+                                                <button class="button" type="reset" name="" value="Cancelar"> Cancelar </button>
+                                               
+                    </section>
+                </form>
+            </main>
+
+
+           
+            <script src="/js/register.js"></script>
+    </body>
+
+</html>

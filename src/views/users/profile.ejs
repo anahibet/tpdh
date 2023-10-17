@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="/css/userProfile.css" />
+
+
+    <body>
+        <%- include('../partials/header.ejs') %>
+
+            <div>
+                <div class="container-user">
+                    <div class="mensaje-user">
+                        <h2>Hola
+                            <%= user.user_firstname +" "+ user.user_lastname %>! </h2>
+                        <img src="/img/users/<%= user.user_image %> " class="image-user">
+                        <br>
+                        <div class="mail-user">
+                            <%= user.user_email %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="/users/edit/<%= user.user_id %>" class="w3-button w3-round w3-blue">Editar</a>
+            </div>
+
+           
+    </body>
+
+</html>

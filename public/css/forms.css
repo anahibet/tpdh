@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto;
+}
+
+header{
+    display: flex !important;
+}
+
+.body-form{
+    background-image:url(/img/fondo.jpg);
+}  
+.form-login, .form-register, .form-create{
+    width: 400px;
+    height: 80%;
+    background-color: #403737;
+    margin: auto;
+    margin-top: 120px;
+    margin-bottom: 60px;
+    text-align: center;
+    box-shadow: 7px 13px 37px #6E6C6C;
+    padding: 20px 30px;
+    border-top: 4px solid #B4ABA9;
+    color: #fff;
+}
+/*.form-login{
+    margin-top: 0px;
+}*/
+/*.form-login h4, .form-register h4{
+    margin: 0;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+} */
+.h4-form{
+    margin: 0;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid;
+    font-size: 20px;
+    color: white;
+}
+.control{
+    width: 100%;
+    border: 1px solid rgb(0, 0, 0);
+    margin-bottom: 15px;
+    padding: 11px 10px;
+    background: #252323;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    color:#fff;
+}
+
+.button{
+    width: 100%;
+    height: 40px;
+    background: #017bab;
+    border: none;
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0022AA;
+}
+
+.form-login p, .form-register p{
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+
+.form-login a, .form-register a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;   
+}
+.form-login a:hover, .form-register a:hover {
+    text-decoration: underline;
+}
+
+@media(max-width:500px){
+    .form-login, .form-register{
+        width: 80%;
+    }
+}
+
+.error-msg{
+color: rgb(255, 75, 43);
+  text-align: center;
+}

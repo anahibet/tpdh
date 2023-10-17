@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/head.ejs') %>
+  <link href="/css/forms.css" rel="stylesheet" />
+
+  <body class="body-form">
+    <%- include('../partials/header.ejs') %>
+
+    <main>
+      <form action="/users/login" method="POST" class="login-form">
+        <section class="form-login">
+          <h4 class="h4-form">Ingresá</h4>
+          <input class="control" type="email" name="email" id="email" placeholder="E-mail"/>
+          <% if(locals.errors && errors.email) { %>
+            <p class="error-msg"><%= errors.email.msg %></p>
+        <% } %>
+          <input class="control" type="password" name="password" id="password" placeholder="Contraseña"/>
+          
+          <ul class="errors"></ul>
+        
+          <button class="button" type="submit" name="" value="Ingresar" > Ingresar </button>
+          <button class="button" type="reset" name="" value="Cancelar" > Cancelar </button>
+          <p><a href="editarPas.ejs">¿Olvidaste tu contraseña? Necesitas Modificarla </a></p>
+        </section>
+      </form>
+    </main>
+
+    
+    <script src="/js/login.js"></script>
+  </body>
+</html>
