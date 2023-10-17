@@ -2,92 +2,91 @@ const db = require("../database/models");
 const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const { Op } = require("sequelize");
-const adminMiddleware = require('../middlewares/adminMiddleware'); 
 
-
+const adminMiddleware = require('../middlewares/adminMiddleware');
 
 const adminDB = {
- 
 
-    create: [adminMiddleware, async function(req, res) {
+    create: [adminMiddleware, async function (req, res) {
         const resultValidation = validationResult(req);
-    
-        if (resultValidation.errors.length > 0) {
+
+        if (!resultValidation.isEmpty()) {
             return res.render("users/register", {
-                errors: resultValidation.mapped(),
+                errors: resultValidation.array(),
                 oldData: req.body
             });
         }
-    
+
         try {
             const userInDB = await db.User.findOne({
                 where: {
                     user_email: req.body.email
                 }
             });
-    
+
             if (userInDB) {
                 return res.render('users/register', {
-                    errors: {
-                        email: {
-                            msg: 'Este email ya está registrado'
-                        }
-                    },
+                    errors: [{
+                        param: 'email',
+                        msg: 'Este email ya está registrado'
+                    }],
                     oldData: req.body
                 });
             }
-    
+
             await db.User.create({
-                user_category_id:  req.body.userCategory,
+                user_category_id: req.body.userCategory,
                 user_firstname: req.body.firstName,
                 user_lastname: req.body.lastName,
                 user_email: req.body.email,
                 user_password: bcryptjs.hashSync(req.body.password, 10),
-                user_image: req.file.filename,
+                user_image: req.file.filename, 
                 user_active: 1
             });
-    
-            res.redirect("/users/editaAdmin");
+
+            res.redirect("users/register");
         } catch (error) {
             console.log(error);
         }
-    
     }],
 
-   
     profile: (req, res) => {
         return res.render("users/profile", {
             user: req.session.userLogged
         });
     },
 
-    editar: [adminMiddleware, function(req, res) {
-        // La edición de usuarios solo está permitida para administradores
-        db.User.findByPk(req.params.id)
-            .then(function(userToEdit) {
-                res.render("users/editaAdmin.ejs", { userToEdit: userToEdit })
-            })
+    editar: [adminMiddleware, async function (req, res) {
+        try {
+            const userToEdit = await db.User.findByPk(req.params.id);
+            res.render("users/editaAdmin", { userToEdit: userToEdit });
+        } catch (error) {
+            console.log(error);
+        }
     }],
 
-    actualizar: [adminMiddleware, function(req, res) {
-        // La actualización de usuarios solo está permitida para administradores
-        db.User.update({
-            user_category_id: req.body.userCategory,
-            user_firstname: req.body.firstName,
-            user_lastname: req.body.lastName,
-            user_email: req.body.email,
-            user_password: hashedPassword,
-            user_image: req.file.filename,
-            user_active: 1
-        }, {
-            where: {
-                user_id: req.params.id
-            }
-        });
-        res.redirect("/users/profile");
+    actualizar: [adminMiddleware, async function (req, res) {
+        
+        try {
+            await db.User.update({
+                user_category_id: req.body.userCategory,
+                user_firstname: req.body.firstName,
+                user_lastname: req.body.lastName,
+                user_email: req.body.email,
+                user_password: hashedPassword, 
+                user_image: req.file.filename, 
+                user_active: 1
+            }, {
+                where: {
+                    user_id: req.params.id
+                }
+            });
+            res.redirect("/users/profile");
+        } catch (error) {
+            console.log(error);
+        }
     }],
 
-  
 }
 
 module.exports = adminDB;
